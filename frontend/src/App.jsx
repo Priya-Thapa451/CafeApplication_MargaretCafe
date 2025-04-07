@@ -17,6 +17,7 @@ import MainLayout from "./layout/MainLayout";
 import Profile from "./pages/customer/Profile";
 import CartPage from "./pages/cart/CartPage";
 
+
 export default function App() {
   return (
     <>
@@ -40,10 +41,20 @@ export default function App() {
           <Route path="/customer/home" element={<CustomerPage />} />
           <Route path="/customer/profile" element={<Profile />} />
           <Route path="/customer/cart" element={<CartPage />} />
+          <Route path="/customer/about" element={<AboutUs />} />
+          <Route path="/customer/reservation" element={<ReservationPage />} />
+          <Route path="/customer/home" element={<HomePage/>} />
+          <Route path="/customer/menu" element={<Menu />} />
+          <Route path="/customer/about" element={<AboutUs />} />
+
+
+
+
         </Route>
         <Route path="/staff" element={<StaffLayout />}>
           <Route index element={<StaffHomePage />} />
           <Route path="/staff/home" element={<StaffHomePage />} />
+          
         </Route>
       </Routes>
     </>

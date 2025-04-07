@@ -28,19 +28,19 @@ export default function CustomerNavbar() {
       </div>
       <ul className="flex gap-6">
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/">Home</Link>
+          <Link to="/customer/home">Home</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
           <Link to="/courses">Our Courses</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/menu">Our Menu</Link>
+          <Link to="/customer/menu">Our Menu</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/reservation">Reservation</Link>
+          <Link to="/customer/reservation">Reservation</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/about">About Us</Link>
+          <Link to="/customer/about">About Us</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
           <Link to="/contact">Contact</Link>

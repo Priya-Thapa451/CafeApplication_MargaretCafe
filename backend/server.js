@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 import cookieParser from "cookie-parser";
 import profileRouter from "./routes/profileRoutes.js";
 import cartRouter from "./routes/cartRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 
 dotenv.config();
@@ -32,6 +33,8 @@ app.use("/api/users", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/customer", profileRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/orders", orderRouter);
+
 const createDefaultAdmin = async () => {
     try {
       const adminExists = await prisma.admin.findUnique({
