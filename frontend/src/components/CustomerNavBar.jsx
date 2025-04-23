@@ -22,7 +22,7 @@ export default function CustomerNavbar() {
   };
 
   return (
-    <nav className="flex justify-between items-center p-4 z-10 bg-[#6E4523]">
+    <nav className="flex justify-between items-center p-3 z-8 bg-[#6E4523]">
       <div className="flex items-center gap-6">
         <img src={logo} className="h-20 w-auto" alt="Logo" />
       </div>

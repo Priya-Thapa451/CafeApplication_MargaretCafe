@@ -9,6 +9,8 @@ import cookieParser from "cookie-parser";
 import profileRouter from "./routes/profileRoutes.js";
 import cartRouter from "./routes/cartRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
+import dashboardRouter from "./routes/dashboardRoutes.js";
+import paymentRouter from "./routes/paymentRoutes.js";
 
 
 dotenv.config();
@@ -30,10 +32,12 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRouter);
-app.use("/api/admin", adminRouter);
+app.use("/api/admin", adminRouter, orderRouter);
 app.use("/api/customer", profileRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/admin/dashboard", dashboardRouter);
+app.use("/api/payment", paymentRouter);
 
 const createDefaultAdmin = async () => {
     try {

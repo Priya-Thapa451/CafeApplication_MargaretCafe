@@ -17,6 +17,13 @@ import MainLayout from "./layout/MainLayout";
 import Profile from "./pages/customer/Profile";
 import CartPage from "./pages/cart/CartPage";
 
+import Contactus from "./pages/customer/Contactus";
+import OurCourses from "./pages/customer/OurCourses";
+import Payment from "./pages/payment/Payment";
+import Failure from "./pages/payment/Failure";
+import Success from "./pages/payment/Success";
+
+
 
 export default function App() {
   return (
@@ -29,11 +36,13 @@ export default function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/menu" element={<Menu />} />
+          <Route path="/contact" element={<Contactus />} />
+          <Route path="/contact" element={<Contactus />} />
           <Route path="/verify-email/:token" element={<EmailVerify />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="/forget" element={<ForgotPassword />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/reservation" element={<ReservationPage />} />
+          <Route path="/courses" element={<OurCourses/>} />
           
           {/* Add the profile page route */}
         </Route>
@@ -46,6 +55,9 @@ export default function App() {
           <Route path="/customer/home" element={<HomePage/>} />
           <Route path="/customer/menu" element={<Menu />} />
           <Route path="/customer/about" element={<AboutUs />} />
+          <Route path="/customer/payment" element={<Payment />} />
+          <Route path="/customer/payment/failure" element={<Failure />} />
+          <Route path="/customer/payment/success" element={<Success />} />
 
 
 

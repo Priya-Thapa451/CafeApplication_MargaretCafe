@@ -1,149 +1,120 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import toast from "react-hot-toast";
+import Payment from "../payment/Payment";
 
-const OrderForm = ({ cartItems, totalAmount }) => {
-  const [address, setAddress] = useState(""); // Store user address
-  const [paymentMethod, setPaymentMethod] = useState(""); // Store payment method
-  const [orderType, setOrderType] = useState("DELIVERY"); // Default order type to DELIVERY
-
-  useEffect(() => {
-    // Fetch the current address of the logged-in user
-    const fetchAddress = async () => {
-      try {
-        const token = Cookies.get("token");
-        if (!token) throw new Error("Unauthorized: Please log in first.");
-
-        const response = await axios.get(
-          `http://localhost:5000/api/customer/address`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-            withCredentials: true,
-          }
-        );
-
-        setAddress(response.data.address);
-      } catch (err) {
-        toast.error("Failed to fetch address.");
-      }
-    };
-
-    fetchAddress();
-  }, []);
+const OrderForm = ({ cartItems }) => {
+  const [address, setAddress] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("CARD");
+  const [orderType, setOrderType] = useState("DELIVERY");
+  const [triggerEsewa, setTriggerEsewa] = useState(false);
+  const [paymentData, setPaymentData] = useState(null);
 
   const handlePlaceOrder = async () => {
     try {
       const token = Cookies.get("token");
       if (!token) throw new Error("Unauthorized: Please log in first.");
 
-      const orderData = {
-        address,
-        paymentMethod,
-        orderType,
-      };
+      if (paymentMethod === "Esewa") {
+        const response = await axios.post(
+          "http://localhost:5000/api/payment/initiate",
+          {
+            address,
+            orderType,
+            cartItems,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
 
-      const response = await axios.post(
-        `http://localhost:5000/api/orders/place`,
-        orderData,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          withCredentials: true,
-        }
-      );
+        setPaymentData(response.data);
+        setTriggerEsewa(true);
+      } else {
+        await axios.post(
+          "http://localhost:5000/api/orders/place",
+          {
+            address,
+            paymentMethod,
+            orderType,
+            cartItems,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            withCredentials: true,
+          }
+        );
 
-      toast.success("Order placed successfully");
-      // You may redirect to an order confirmation page here if you want
+        toast.success("Order placed successfully!");
+      }
     } catch (err) {
-      const errorMessage =
-        err.response?.data?.message || err.message || "Error placing order.";
-      toast.error(errorMessage);
-    }
-  };
-
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
-  };
-
-  const handleSaveAddress = async () => {
-    try {
-      const token = Cookies.get("token");
-      if (!token) throw new Error("Unauthorized: Please log in first.");
-
-      const response = await axios.put(
-        `http://localhost:5000/api/customer/address/update`,
-        { address },
-        {
-          headers: { Authorization: `Bearer ${token} `},
-          withCredentials: true,
-        }
-      );
-
-      toast.success("Address updated successfully");
-    } catch (err) {
-      toast.error("Failed to update address");
+      toast.error(err.response?.data?.message || "Failed to place order.");
     }
   };
 
   return (
-    <div className="w-full max-w-2xl bg-white rounded-lg shadow p-6 mt-6">
-      <h3 className="text-xl font-semibold mb-4">Order Details</h3>
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-lg max-w-md mx-auto p-8 mt-12 font-sans">
+      <h2 className="text-center text-2xl font-bold text-lime-800 mb-6 tracking-tight">
+        🧾 Margaret Café — Order Form
+      </h2>
 
-      <label className="block mb-2">Address</label>
-      <input
-        type="text"
-        value={address}
-        onChange={handleAddressChange}
-        placeholder="Enter your address"
-        className="w-full px-4 py-2 mb-4 border rounded-md"
-        required
-      />
-      <button
-        onClick={handleSaveAddress}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md mb-4"
-      >
-        Save Address
-      </button>
+      <div className="space-y-6 text-sm text-gray-800">
+        <div>
+          <label className="block mb-2 font-semibold">📍 Address</label>
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Enter your delivery address"
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500"
+          />
+        </div>
 
-      <label className="block mb-2">Payment Method</label>
-      <select
-        value={paymentMethod}
-        onChange={(e) => setPaymentMethod(e.target.value)}
-        className="w-full px-4 py-2 mb-4 border rounded-md"
-        required
-      >
-        <option value="">Select Payment Method</option>
-        <option value="CASH">Cash on Delivery</option>
-        <option value="CARD">Credit/Debit Card</option>
-      </select>
+        <div>
+          <label className="block mb-2 font-semibold">📦 Order Type</label>
+          <select
+            value={orderType}
+            onChange={(e) => setOrderType(e.target.value)}
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500"
+          >
+            <option value="DELIVERY">Delivery</option>
+            <option value="PICKUP">Pickup</option>
+          </select>
+        </div>
 
-      <label className="block mb-2">Order Type</label>
-      <select
-        value={orderType}
-        onChange={(e) => setOrderType(e.target.value)}
-        className="w-full px-4 py-2 mb-4 border rounded-md"
-      >
-        <option value="DELIVERY">Delivery</option>
-        <option value="PICKUP">Pickup</option>
-      </select>
+        <div>
+          <label className="block mb-2 font-semibold">💳 Payment Method</label>
+          <select
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+            className="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500"
+          >
+            <option value="CARD">Cash on Delivery</option>
+            <option value="Esewa">eSewa</option>
+          </select>
+        </div>
 
-      {orderType === "DELIVERY" && (
-        <div className="text-xl font-semibold mb-4">Delivery Charge: $150</div>
-      )}
+        <button
+          onClick={handlePlaceOrder}
+          className="w-full py-3 mt-2 bg-lime-700 text-white font-semibold rounded-lg hover:bg-lime-800 transition"
+        >
+          ✅ Place Order
+        </button>
 
-      <div className="text-xl font-semibold mb-4">
-        Total: ${totalAmount + (orderType === "DELIVERY" ? 150 : 0)}
+        {triggerEsewa && paymentData && (
+          <div className="mt-8 border-t pt-4">
+            <Payment paymentData={paymentData} />
+          </div>
+        )}
       </div>
 
-      <button
-        onClick={handlePlaceOrder}
-        className="w-full bg-blue-500 text-white py-2 rounded-md"
-      >
-        Place Order
-      </button>
+      <p className="text-center text-xs text-gray-500 mt-6">
+        Your details are safe & secure 🔒
+      </p>
     </div>
   );
 };
 
-export default OrderForm;
+export default OrderForm;

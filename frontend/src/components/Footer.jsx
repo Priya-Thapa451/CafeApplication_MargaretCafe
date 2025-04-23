@@ -56,13 +56,13 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-[#D7A86E]">Contact Us</h3>
             <p className="mt-3 flex items-center justify-center md:justify-start gap-2">
-              <FaMapMarkerAlt /> 123 Coffee St, Downtown
+              <FaMapMarkerAlt /> Lakeside Pokhara, St-2
             </p>
             <p className="mt-2 flex items-center justify-center md:justify-start gap-2">
-              <FaPhone /> +123 456 7890
+              <FaPhone /> +977 9802367519
             </p>
             <p className="mt-2 flex items-center justify-center md:justify-start gap-2">
-              <FaEnvelope /> hello@margaretcafe.com
+              <FaEnvelope /> margaretcafe@gmail.com
             </p>
 
             {/* Social Icons */}

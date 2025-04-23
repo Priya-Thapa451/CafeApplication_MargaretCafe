@@ -4,17 +4,22 @@ import MenuManagement from "./pages/MenuManagement";
 import Dashboard from "./pages/Dashboard";
 import AddMenu from "./components/AddMenu";
 import MenuList from "./components/MenuList";
+import OrderList from "./components/OrderList";
+import DashboardLayout from "./layout/DashboardLayout";
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />{" "}
-      {/* Redirect to /login */}
+      <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/menu" element={<MenuManagement />} />
-      <Route path="/add/menu" element={<AddMenu />} />
-      <Route path="/menu/list" element={<MenuList />} />
+
+      {/* Dashboard Layout */}
+      <Route  element={<DashboardLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/add/menu" element={<AddMenu />} />
+        <Route path="/menu/list" element={<MenuList />} />
+        <Route path="/orders" element={<OrderList />} />
+      </Route>
     </Routes>
   );
 }

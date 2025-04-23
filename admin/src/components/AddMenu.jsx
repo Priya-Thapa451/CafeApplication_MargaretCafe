@@ -7,14 +7,14 @@ const AddMenu = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null); // Ensure image is a File object
+  const [image, setImage] = useState(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
-    setImage(e.target.files[0]); // Store file object
+    setImage(e.target.files[0]);
   };
 
   const handleCreateMenuItem = async (e) => {
@@ -42,24 +42,16 @@ const AddMenu = () => {
     formData.append("description", description);
     formData.append("price", parsedPrice);
     formData.append("category", category);
-
     if (image) {
-      formData.append("image", image); // Ensure image is added correctly
+      formData.append("image", image);
     }
 
     try {
-      console.log("Sending data...", formData); // Debugging
-
-      const response = await axios.post(
-        "http://localhost:5000/api/admin/menu",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            // DO NOT manually set Content-Type (Axios handles it)
-          },
-        }
-      );
+      await axios.post("http://localhost:5000/api/admin/menu", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       setSuccess("Menu item created successfully!");
       setError("");
@@ -73,93 +65,95 @@ const AddMenu = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6 text-center">Add Menu Item</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#fef9f5] to-[#f7f1eb]">
+      <div className="bg-white p-10 rounded-3xl shadow-2xl border border-[#e8ddd3] w-full max-w-lg">
+        <h1 className="text-3xl font-semibold text-center text-[#4b372e] mb-6 tracking-wide">
+          Add New Menu Item
+        </h1>
 
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        {success && <p className="text-green-500 mb-4">{success}</p>}
+        {error && <p className="text-red-600 text-sm text-center mb-3">{error}</p>}
+        {success && <p className="text-green-600 text-sm text-center mb-3">{success}</p>}
 
-        <form onSubmit={handleCreateMenuItem}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Name
+        <form onSubmit={handleCreateMenuItem} className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium text-[#6b4c3b] mb-1">
+              Item Name
             </label>
             <input
               type="text"
-              placeholder="Enter item name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="E.g., Vanilla Latte"
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-[#d6c3b5] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c6a78e]"
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
+          <div>
+            <label className="block text-sm font-medium text-[#6b4c3b] mb-1">
               Description
             </label>
             <input
               type="text"
-              placeholder="Enter item description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              placeholder="E.g., Creamy espresso with vanilla"
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-[#d6c3b5] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c6a78e]"
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
+          <div>
+            <label className="block text-sm font-medium text-[#6b4c3b] mb-1">
               Price ($)
             </label>
             <input
               type="number"
-              placeholder="Enter price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              placeholder="4.50"
               required
               min="0"
               step="0.01"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-[#d6c3b5] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c6a78e]"
             />
           </div>
 
-          <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-700">
+          <div>
+            <label className="block text-sm font-medium text-[#6b4c3b] mb-1">
               Category
             </label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-[#d6c3b5] rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-[#c6a78e]"
             >
-             <option value="">Select category</option>
-            <option value="BEVERAGES">Beverages</option>
-            <option value="PASTRIES_BAKED_GOODS">Pastries & Baked Goods</option>
-            <option value="SANDWICHES_WRAP">Sandwiches & Wraps</option>
-            <option value="BREAKFAST_ITEMS">Breakfast Items</option>
-            <option value="SALADS">Salads</option>
-            <option value="DESSERTS">Desserts</option>
+              <option value="">Choose a category</option>
+              <option value="BEVERAGES">Beverages</option>
+              <option value="PASTRIES_BAKED_GOODS">Pastries & Baked Goods</option>
+              <option value="SANDWICHES_WRAP">Sandwiches & Wraps</option>
+              <option value="BREAKFAST_ITEMS">Breakfast Items</option>
+              <option value="SALADS">Salads</option>
+              <option value="DESSERTS">Desserts</option>
             </select>
           </div>
 
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Image
+          <div>
+            <label className="block text-sm font-medium text-[#6b4c3b] mb-1">
+              Upload Image
             </label>
             <input
               type="file"
-              onChange={handleImageChange} // Store the selected file
-              accept="image/*" // Restrict to image files only
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full px-4 py-2 border border-[#d6c3b5] rounded-lg bg-white focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="w-full bg-[#8d5c42] text-white py-2 rounded-lg hover:bg-[#7a4f39] transition duration-300"
           >
             Add Menu Item
           </button>

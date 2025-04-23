@@ -34,7 +34,7 @@ export default function Navbar() {
           <Link to="/about">About Us</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/about">Contact</Link>
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
       <div className="hidden md:flex items-center gap-6">

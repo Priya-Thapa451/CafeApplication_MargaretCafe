@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import OrderForm from "./OrderForm"; // Import the OrderForm component
+import OrderForm from "./OrderForm";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -27,7 +27,7 @@ const CartPage = () => {
       });
 
       setCartItems(response.data);
-      setError(null); // Clear error if successful
+      setError(null);
     } catch (err) {
       const errorMessage =
         err.response?.data?.message || err.message || "Failed to fetch cart";
@@ -49,7 +49,7 @@ const CartPage = () => {
       await axios.delete(
         `http://localhost:5000/api/cart/remove/${cartItemId}`,
         {
-          headers: { Authorization: `Bearer ${token} `},
+          headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         }
       );
@@ -72,7 +72,7 @@ const CartPage = () => {
         `http://localhost:5000/api/cart/update/${cartItemId}`,
         { quantity: newQuantity },
         {
-          headers: { Authorization: `Bearer ${token}`},
+          headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         }
       );
@@ -92,7 +92,7 @@ const CartPage = () => {
     0
   );
 
-  if (loading) return <p className="text-center mt-10">Loading cart...</p>;
+  if (loading) return <p className="text-center mt-10 text-[#4b2e2b]">Loading cart...</p>;
   if (error)
     return (
       <p className="text-center text-red-500 mt-10">
@@ -101,82 +101,75 @@ const CartPage = () => {
     );
 
   return (
-    <>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-        <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
+    <div className="min-h-screen bg-[#f9f4ef] flex flex-col items-center py-10 px-4 sm:px-6">
+      <h2 className="text-4xl font-bold mb-8 text-[#4b2e2b]">Your Cart</h2>
 
-        {cartItems.length === 0 ? (
-          <p className="text-lg">Your cart is empty.</p>
-        ) : (
-          <div className="w-full max-w-2xl bg-white rounded-lg shadow p-6">
-            {cartItems.map((item) => (
-              <div
-                key={item.id}
-                className="flex justify-between items-center border-b py-4"
-              >
-                <div className="flex items-center gap-4">
-                  {item.menu.imageUrl ? (
-                    <img
-                      src={`http://localhost:5000${item.menu.imageUrl}`}
-                      alt={item.menu.name}
-                      className="w-16 h-16 object-cover"
-                    />
-                  ) : (
-                    <span>No Image</span>
-                  )}
-                  <div>
-                    <h4 className="font-semibold text-lg">{item.menu.name}</h4>
-                    <p className="text-gray-500 text-sm">
-                      ${item.menu.price} each
-                    </p>
+      {cartItems.length === 0 ? (
+        <p className="text-lg text-[#6b4f4f]">Your cart is currently empty.</p>
+      ) : (
+        <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-6">
+          {cartItems.map((item) => (
+            <div
+              key={item.id}
+              className="flex justify-between items-center border-b last:border-none py-4"
+            >
+              <div className="flex items-center gap-4">
+                {item.menu.imageUrl ? (
+                  <img
+                    src={`http://localhost:5000${item.menu.imageUrl}`}
+                    alt={item.menu.name}
+                    className="w-16 h-16 rounded-md object-cover"
+                  />
+                ) : (
+                  <div className="w-16 h-16 flex items-center justify-center bg-gray-100 text-gray-500 rounded-md">
+                    No Image
                   </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center border rounded-md">
-                    <button
-                      onClick={() =>
-                        handleQuantityChange(item.id, item.quantity - 1)
-                      }
-                      className="px-3 py-1 text-lg font-bold hover:bg-gray-200"
-                    >
-                      −
-                    </button>
-                    <span className="px-4 py-1">{item.quantity}</span>
-                    <button
-                      onClick={() =>
-                        handleQuantityChange(item.id, item.quantity + 1)
-                      }
-                      className="px-3 py-1 text-lg font-bold hover:bg-gray-200"
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={() => handleRemoveFromCart(item.id)}
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Remove
-                  </button>
+                )}
+                <div>
+                  <h4 className="font-semibold text-lg text-[#4b2e2b]">{item.menu.name}</h4>
+                  <p className="text-[#8a6e63] text-sm">${item.menu.price.toFixed(2)} each</p>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
 
-        {cartItems.length > 0 && (
-          <div className="w-full max-w-2xl bg-white p-6 mt-6 rounded-lg shadow">
-            <div className="text-right text-lg font-semibold">
-              <p>Total: ${totalPrice.toFixed(2)}</p>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center border rounded-md overflow-hidden">
+                  <button
+                    onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                    className="px-3 py-1 text-lg font-bold bg-[#eee2d3] hover:bg-[#e4d4c2] text-[#4b2e2b]"
+                  >
+                    −
+                  </button>
+                  <span className="px-4 py-1 text-[#4b2e2b]">{item.quantity}</span>
+                  <button
+                    onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                    className="px-3 py-1 text-lg font-bold bg-[#eee2d3] hover:bg-[#e4d4c2] text-[#4b2e2b]"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <button
+                  onClick={() => handleRemoveFromCart(item.id)}
+                  className="bg-[#4b2e2b] hover:bg-[#3d2623] text-white px-4 py-1.5 rounded-md text-sm transition-all"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
-            <OrderForm cartItems={cartItems} totalAmount={totalPrice} />{" "}
-            {/* Pass totalPrice here */}
+          ))}
+        </div>
+      )}
+
+      {cartItems.length > 0 && (
+        <div className="w-full max-w-3xl bg-white p-6 mt-8 rounded-2xl shadow-lg">
+          <div className="text-right text-xl font-semibold text-[#4b2e2b] mb-4">
+            <p>Total: ${totalPrice.toFixed(2)}</p>
           </div>
-        )}
-      </div>
-    </>
+          <OrderForm cartItems={cartItems} totalAmount={totalPrice} />
+        </div>
+      )}
+    </div>
   );
 };
 
-export default CartPage;
+export default CartPage;

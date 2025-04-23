@@ -72,3 +72,61 @@ export const placeOrder = async (req, res) => {
     res.status(500).json({ message: "Failed to place order" });
   }
 };
+// --------------------- GET ALL ORDERS (ADMIN) ---------------------
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await prisma.order.findMany({
+      include: {
+        items: {
+          include: {
+            menu: true,
+          },
+        },
+        user: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    res.status(200).json({ orders });
+  } catch (error) {
+    console.error("Get Orders Error:", error);
+    res.status(500).json({ message: "Failed to retrieve orders" });
+  }
+};
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = [
+      "PENDING",
+      "CONFIRMED",
+      "PREPARING",
+      "OUT_FOR_DELIVERY",
+      "DELIVERED",
+      "CANCELLED",
+    ];
+
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ message: "Invalid order status" });
+    }
+
+    const updated = await prisma.order.update({
+      where: { id: parseInt(orderId) },
+      data: { status },
+    });
+
+    res.status(200).json({ message: "Order status updated", order: updated });
+  } catch (error) {
+    console.error("❌ Update Order Status Error:", error);
+    res.status(500).json({ message: "Failed to update order status" });
+  }
+};
