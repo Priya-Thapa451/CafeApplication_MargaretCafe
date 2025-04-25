@@ -55,6 +55,8 @@ export default function App() {
           <Route path="/customer/home" element={<HomePage/>} />
           <Route path="/customer/menu" element={<Menu />} />
           <Route path="/customer/about" element={<AboutUs />} />
+          <Route path="/customer/courses" element={<OurCourses />} />
+          <Route path="/customer/contact" element={<Contactus/>} />
           <Route path="/customer/payment" element={<Payment />} />
           <Route path="/customer/payment/failure" element={<Failure />} />
           <Route path="/customer/payment/success" element={<Success />} />

@@ -51,7 +51,7 @@ const Success = () => {
     <div className="max-w-md mx-auto px-4 py-10 font-mono">
       <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-md">
         <h1 className="text-2xl text-center font-bold mb-4 border-b border-dashed pb-2">
-          Margaret Café Receipt
+          Margaret CafeReceipt
         </h1>
 
         {loading && (
@@ -62,7 +62,7 @@ const Success = () => {
 
         {error && (
           <p className="text-red-500 text-center text-sm">
-            ❌ Error: {error}
+             Error: {error}
           </p>
         )}
 

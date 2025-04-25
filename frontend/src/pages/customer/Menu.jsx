@@ -90,7 +90,7 @@ const Menu = () => {
             <div className="p-4">
               <h2 className="text-lg font-bold mt-2">{item.name}</h2>
               <p className="text-gray-600 text-sm">{item.description}</p>
-              <p className="text-lg font-semibold mt-2">${item.price}</p>
+              <p className="text-lg font-semibold mt-2">Rs{item.price}</p>
               <button
                 onClick={() => addToCart(item.id)}
                 className="mt-3 px-4 py-2 bg-amber-900 text-white rounded hover:bg-yellow-900"

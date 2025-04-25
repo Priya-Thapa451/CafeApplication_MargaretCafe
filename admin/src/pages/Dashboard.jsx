@@ -58,15 +58,11 @@ const Dashboard = () => {
           color="bg-green-500"
         />
         <StatCard
-          title="Total Products"
+          title="Total Menu"
           value={stats.totalProducts}
           color="bg-purple-500"
         />
-        <StatCard
-          title="Total Appointments"
-          value={stats.totalAppointments}
-          color="bg-pink-500"
-        />
+       
       </div>
 
       <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">

@@ -163,7 +163,7 @@ const CartPage = () => {
       {cartItems.length > 0 && (
         <div className="w-full max-w-3xl bg-white p-6 mt-8 rounded-2xl shadow-lg">
           <div className="text-right text-xl font-semibold text-[#4b2e2b] mb-4">
-            <p>Total: ${totalPrice.toFixed(2)}</p>
+            <p>Total: RS{totalPrice.toFixed(2)}</p>
           </div>
           <OrderForm cartItems={cartItems} totalAmount={totalPrice} />
         </div>
