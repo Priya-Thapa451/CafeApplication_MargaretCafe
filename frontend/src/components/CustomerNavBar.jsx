@@ -1,24 +1,48 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/Logo.png";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 
 export default function CustomerNavbar() {
   const navigate = useNavigate();
+  const [cartCount, setCartCount] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // Handle profile dropdown
   const handleProfileClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  // Handle logout action
   const handleLogout = () => {
     navigate("/");
   };
 
+  // Handle cart click, navigate to cart page
   const handleCartClick = () => {
     navigate("/customer/cart");
   };
+
+  // Function to simulate adding an item to the cart
+  const addToCart = (quantity) => {
+    setCartCount(prevCount => prevCount + quantity); // Add items to cart count
+  };
+
+  // Effect to load cart count from localStorage (if any)
+  useEffect(() => {
+    const storedCartCount = localStorage.getItem("cartCount");
+    if (storedCartCount) {
+      setCartCount(Number(storedCartCount));
+    }
+  }, []);
+
+  // Effect to save cart count to localStorage whenever it changes
+  useEffect(() => {
+    if (cartCount > 0) {
+      localStorage.setItem("cartCount", cartCount); // Store the cart count
+    }
+  }, [cartCount]);
 
   return (
     <nav className="flex justify-between items-center p-3 bg-[#6E4523] relative z-50">
@@ -29,13 +53,12 @@ export default function CustomerNavbar() {
 
       {/* Navigation Links */}
       <ul className="flex gap-6">
-        {[
-          { to: "/customer/home", label: "Home" },
+        {[{ to: "/customer/home", label: "Home" },
           { to: "/customer/courses", label: "Our Courses" },
           { to: "/customer/menu", label: "Our Menu" },
-          { to: "/customer/reservation", label: "Reservation" },
+          { to: "/customer/reserve", label: "Reservation" },
           { to: "/customer/about", label: "About Us" },
-          { to: "/customer/contact", label: "Contact" },
+          { to: "/customer/contact", label: "Contact" }
         ].map((item, index) => (
           <li
             key={index}
@@ -66,7 +89,7 @@ export default function CustomerNavbar() {
                 </li>
                 <li>
                   <Link
-                    to="/orders"
+                    to="/customer/orders"
                     className="block px-4 py-2 hover:bg-[#a7744f]"
                   >
                     My Orders
@@ -86,8 +109,14 @@ export default function CustomerNavbar() {
         </div>
 
         {/* Cart Icon */}
-        <button onClick={handleCartClick}>
+        <button onClick={handleCartClick} className="relative">
           <FaShoppingCart className="text-white text-2xl" />
+          {/* Cart Count Badge */}
+          {cartCount > 0 && (
+            <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cartCount}
+            </span>
+          )}
         </button>
       </div>
     </nav>

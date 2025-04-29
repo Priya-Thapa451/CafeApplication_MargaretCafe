@@ -107,7 +107,7 @@ const MenuList = () => {
     <div className="min-h-screen bg-[#f8f4f0] flex items-center justify-center p-6">
       <div className="w-full max-w-6xl bg-white p-8 rounded-2xl shadow-lg border border-[#e4dfd9]">
         <h1 className="text-3xl font-bold mb-6 text-center text-[#3b2f2f]">
-          Cafe Menu
+          Cafe Menu List
         </h1>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}

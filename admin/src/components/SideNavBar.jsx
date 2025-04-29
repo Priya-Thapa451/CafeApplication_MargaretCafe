@@ -8,28 +8,32 @@ import {
   ShoppingCart,
   Settings,
   LogOut,
+  CalendarClock, // Added for Reservation icon
 } from "lucide-react";
 
 const SideNavBar = () => {
+  // Logout handler (replace with your real logout logic)
   const handleLogout = () => {
-    // Example logout logic (replace with your own)
     console.log("Logging out...");
-    // e.g., localStorage.removeItem("token");
-    // navigate("/login");
+    // Example: localStorage.removeItem("token");
+    // Example: navigate("/login");
   };
 
   return (
     <aside className="bg-[#3b1f1b] text-white w-64 fixed h-full shadow-lg flex flex-col justify-between">
-      {/* Top: Logo and Menu */}
+      {/* Top Section: Logo and Navigation Menu */}
       <div>
+        {/* App Logo/Title */}
         <div className="p-6 border-b border-[#5a3c36]">
           <h2 className="text-2xl font-bold font-serif tracking-wide text-center">
             Margaret Cafe
           </h2>
         </div>
 
+        {/* Navigation Links */}
         <nav className="mt-8">
           <ul className="space-y-2 px-4">
+            {/* Dashboard */}
             <li>
               <Link
                 to="/dashboard"
@@ -39,6 +43,8 @@ const SideNavBar = () => {
                 Dashboard
               </Link>
             </li>
+
+            {/* Add Menu */}
             <li>
               <Link
                 to="/add/menu"
@@ -48,6 +54,8 @@ const SideNavBar = () => {
                 Add Menu
               </Link>
             </li>
+
+            {/* Menu List */}
             <li>
               <Link
                 to="/menu/list"
@@ -57,16 +65,30 @@ const SideNavBar = () => {
                 Menu List
               </Link>
             </li>
+
+            {/* Orders */}
             <li>
               <Link
                 to="/orders"
                 className="flex items-center gap-3 px-4 py-3 text-md hover:bg-[#5a3c36] rounded-md transition duration-300"
               >
-
                 <ShoppingCart className="w-5 h-5" />
                 Orders
               </Link>
             </li>
+
+            {/* Reservation */}
+            <li>
+              <Link
+                to="/reserve"
+                className="flex items-center gap-3 px-4 py-3 text-md hover:bg-[#5a3c36] rounded-md transition duration-300"
+              >
+                <CalendarClock className="w-5 h-5" />
+                Reservations
+              </Link>
+            </li>
+
+            {/* Settings */}
             <li>
               <Link
                 to="/settings"
@@ -80,7 +102,7 @@ const SideNavBar = () => {
         </nav>
       </div>
 
-      {/* Bottom: Logout */}
+      {/* Bottom Section: Logout */}
       <div className="mb-6 px-4">
         <button
           onClick={handleLogout}

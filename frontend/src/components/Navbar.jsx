@@ -28,7 +28,7 @@ export default function Navbar() {
           <Link to="/menu">Our Menu</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
-          <Link to="/reservation">Reservation</Link>
+          <Link to="/reserve">Reservation</Link>
         </li>
         <li className="hover:text-yellow-700 transition duration-300 cursor-pointer font-semibold text-white text-lg font-serif">
           <Link to="/about">About Us</Link>

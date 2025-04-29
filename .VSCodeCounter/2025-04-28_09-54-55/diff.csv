@@ -1,0 +1,82 @@
+"filename", "language", "JavaScript", "Properties", "JSON", "HTML", "Markdown", "JavaScript JSX", "XML", "CSS", "comment", "blank", "total"
+"c:\Users\dell\Desktop\MargaretCafe\.env", "Properties", 0, 7, 0, 0, 0, 0, 0, 0, 0, 1, 8
+"c:\Users\dell\Desktop\MargaretCafe\admin\README.md", "Markdown", 0, 0, 0, 0, 7, 0, 0, 0, 0, 6, 13
+"c:\Users\dell\Desktop\MargaretCafe\admin\eslint.config.js", "JavaScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 2, 34
+"c:\Users\dell\Desktop\MargaretCafe\admin\index.html", "HTML", 0, 0, 0, 13, 0, 0, 0, 0, 0, 1, 14
+"c:\Users\dell\Desktop\MargaretCafe\admin\package-lock.json", "JSON", 0, 0, 4738, 0, 0, 0, 0, 0, 0, 1, 4739
+"c:\Users\dell\Desktop\MargaretCafe\admin\package.json", "JSON", 0, 0, 35, 0, 0, 0, 0, 0, 0, 1, 36
+"c:\Users\dell\Desktop\MargaretCafe\admin\postcss.config.js", "JavaScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\Users\dell\Desktop\MargaretCafe\admin\public\vite.svg", "XML", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 37, 0, 6, 43
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\App.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 22, 0, 0, 1, 2, 25
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\assets\react.svg", "XML", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\AddMenu.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 146, 0, 0, 0, 21, 167
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\MenuList.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 238, 0, 0, 0, 18, 256
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\OrderChart.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 2, 31
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\OrderList.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 165, 0, 0, 0, 15, 180
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\RecentOrder.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 0, 1, 19
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\SideNavBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 86, 0, 0, 5, 7, 98
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\StatCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 0, 1, 8
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\components\UpdateOrder.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 153, 0, 0, 0, 14, 167
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\layout\DashboardLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 16, 0, 0, 3, 4, 23
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\main.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 0, 1, 14
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\pages\Dashboard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 66, 0, 0, 0, 10, 76
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\pages\Login.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 69, 0, 0, 2, 7, 78
+"c:\Users\dell\Desktop\MargaretCafe\admin\src\pages\MenuManagement.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 165, 0, 0, 7, 13, 185
+"c:\Users\dell\Desktop\MargaretCafe\admin\tailwind.config.js", "JavaScript", 10, 0, 0, 0, 0, 0, 0, 0, 1, 0, 11
+"c:\Users\dell\Desktop\MargaretCafe\admin\vite.config.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"c:\Users\dell\Desktop\MargaretCafe\frontend\README.md", "Markdown", 0, 0, 0, 0, 7, 0, 0, 0, 0, 6, 13
+"c:\Users\dell\Desktop\MargaretCafe\frontend\eslint.config.js", "JavaScript", 32, 0, 0, 0, 0, 0, 0, 0, 0, 2, 34
+"c:\Users\dell\Desktop\MargaretCafe\frontend\index.html", "HTML", 0, 0, 0, 13, 0, 0, 0, 0, 0, 1, 14
+"c:\Users\dell\Desktop\MargaretCafe\frontend\package-lock.json", "JSON", 0, 0, 4358, 0, 0, 0, 0, 0, 0, 1, 4359
+"c:\Users\dell\Desktop\MargaretCafe\frontend\package.json", "JSON", 0, 0, 35, 0, 0, 0, 0, 0, 0, 1, 36
+"c:\Users\dell\Desktop\MargaretCafe\frontend\postcss.config.js", "JavaScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"c:\Users\dell\Desktop\MargaretCafe\frontend\public\vite.svg", "XML", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\App.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 70, 0, 0, 2, 13, 85
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\assets\react.svg", "XML", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\BookNowPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\CustomerNavBar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 101, 0, 0, 12, 12, 125
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\CustomerSignUpForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 9, 19, 160
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Footer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 6, 5, 90
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Hero.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 34, 0, 0, 4, 5, 43
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\MenuCard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 31, 0, 0, 2, 3, 36
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Navbar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 53, 0, 0, 0, 3, 56
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Orders.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 81, 0, 0, 0, 6, 87
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Profile.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\ReservationCancel.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 83, 0, 0, 6, 14, 103
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\ReservationList.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 151, 0, 0, 2, 20, 173
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\StaffSignUpForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 132, 0, 0, 9, 19, 160
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\components\Tab.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 0, 0, 2, 31
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\layout\CustomerLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 1, 2, 16
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\layout\MainLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 1, 2, 15
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\layout\StaffLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 0, 1, 7
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\main.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 12, 0, 0, 0, 1, 13
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\AboutUs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 79, 0, 0, 5, 4, 88
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\ForgetPassword.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 0, 7, 65
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\LoginPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 133, 0, 0, 5, 19, 157
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\ResetPassword.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 71, 0, 0, 0, 4, 75
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\SignUpPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 8, 0, 0, 1, 1, 10
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\VerifyEmail.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 39, 0, 0, 5, 4, 48
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\cart\CartPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 156, 0, 0, 0, 20, 176
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\cart\OrderForm.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 106, 0, 0, 0, 15, 121
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\Contactus.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 58, 0, 0, 8, 9, 75
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\CustomerPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 1, 11
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\HomePage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 10, 0, 0, 0, 1, 11
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\Menu.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 94, 0, 0, 5, 13, 112
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\MenuPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 3
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\OurCourses.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 47, 0, 0, 2, 5, 54
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\Profile.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 158, 0, 0, 6, 21, 185
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\ReservationPage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 0, 1, 2, 21
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\customer\ReserveNow.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 140, 0, 0, 7, 13, 160
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\payment\Failure.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\payment\Payment.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 51, 0, 0, 0, 4, 55
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\payment\Success.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 113, 0, 0, 0, 15, 128
+"c:\Users\dell\Desktop\MargaretCafe\frontend\src\pages\staff\StaffHomePage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3
+"c:\Users\dell\Desktop\MargaretCafe\frontend\tailwind.config.js", "JavaScript", 10, 0, 0, 0, 0, 0, 0, 0, 1, 1, 12
+"c:\Users\dell\Desktop\MargaretCafe\frontend\vite.config.js", "JavaScript", 14, 0, 0, 0, 0, 0, 0, 0, 1, 1, 16
+"c:\Users\dell\Desktop\MargaretCafe\package-lock.json", "JSON", 0, 0, 3235, 0, 0, 0, 0, 0, 0, 1, 3236
+"c:\Users\dell\Desktop\MargaretCafe\package.json", "JSON", 0, 0, 39, 0, 0, 0, 0, 0, 0, 1, 40
+"Total", "-", 115, 7, 12440, 26, 14, 3569, 4, 43, 121, 442, 16781

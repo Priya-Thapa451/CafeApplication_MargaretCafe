@@ -11,6 +11,7 @@ import cartRouter from "./routes/cartRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
 import dashboardRouter from "./routes/dashboardRoutes.js";
 import paymentRouter from "./routes/paymentRoutes.js";
+import reservationRouter from "./routes/reservationRoutes.js";
 
 
 dotenv.config();
@@ -38,6 +39,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/admin/dashboard", dashboardRouter);
 app.use("/api/payment", paymentRouter);
+app.use("/api/reservations", reservationRouter)
 
 const createDefaultAdmin = async () => {
     try {

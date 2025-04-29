@@ -6,6 +6,7 @@ import AddMenu from "./components/AddMenu";
 import MenuList from "./components/MenuList";
 import OrderList from "./components/OrderList";
 import DashboardLayout from "./layout/DashboardLayout";
+import ReservationList from "./components/ReservationList";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/add/menu" element={<AddMenu />} />
         <Route path="/menu/list" element={<MenuList />} />
         <Route path="/orders" element={<OrderList />} />
+        <Route path="/reserve" element={<ReservationList/>} />
       </Route>
     </Routes>
   );

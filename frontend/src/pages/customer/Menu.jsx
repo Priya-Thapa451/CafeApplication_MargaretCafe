@@ -3,11 +3,12 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import MenuImage from "../../assets/Menu.png"; // Ensure you have a menu image
-import MenuCard from "../../components/MenuCard";
+import MenuCard from "../../components/MenuCard"; // You might be using it later?
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchMenuItems();
@@ -31,7 +32,7 @@ const Menu = () => {
         return;
       }
 
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/api/cart/add",
         { menuId, quantity: 1 },
         {
@@ -50,60 +51,104 @@ const Menu = () => {
     }
   };
 
+  const filteredItems = menuItems.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Menu Banner */}
       <div
-        className="relative w-full h-72 bg-cover bg-center rounded-lg overflow-hidden mb-8 flex-col"
+        className="relative w-full h-72 bg-cover bg-center rounded-xl overflow-hidden mb-12"
         style={{ backgroundImage: `url(${MenuImage})` }}
       >
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-white text-3xl font-serif italic">
-            Try our Desserts, Sweetness in every bite
+          <h1 className="text-white text-4xl md:text-5xl font-serif italic text-center px-4">
+            Try Our Desserts, Sweetness In Every Bite
           </h1>
         </div>
       </div>
 
-      <div className="text-center mb-6">
-        <h1 className="text-4xl font-semibold animate-bounce mt-2 text-amber-950">
+      {/* Title */}
+      <div className="text-center mb-10">
+        <h1 className="text-4xl font-bold text-amber-950 animate-bounce">
           Our Menu
         </h1>
       </div>
 
-      {/* Menu Items */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
-        {menuItems.map((item) => (
-          <div
-            key={item.id}
-            className="max-w-xs bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105"
-          >
-            {/* Image Section */}
-            {item.imageUrl && (
-              <img
-                src={`http://localhost:5000${item.imageUrl}`}
-                alt={item.name}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-            )}
-
-            {/* Content Section */}
-            <div className="p-4">
-              <h2 className="text-lg font-bold mt-2">{item.name}</h2>
-              <p className="text-gray-600 text-sm">{item.description}</p>
-              <p className="text-lg font-semibold mt-2">Rs{item.price}</p>
-              <button
-                onClick={() => addToCart(item.id)}
-                className="mt-3 px-4 py-2 bg-amber-900 text-white rounded hover:bg-yellow-900"
-              >
-                Add to Cart
-              </button>
-            </div>
+      {/* Search Bar */}
+      <div className="flex justify-center mb-10">
+        <div className="relative w-full max-w-md">
+          <input
+            type="text"
+            placeholder="Search menu items..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-12 pr-10 py-3 border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-amber-900 focus:border-amber-900 transition"
+          />
+          {/* Search Icon */}
+          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+            
           </div>
-        ))}
+          {/* Clear Button */}
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-red-500 transition"
+            >
+              ✖
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Menu Items */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105"
+            >
+              {/* Image */}
+              {item.imageUrl && (
+                <img
+                  src={`http://localhost:5000${item.imageUrl}`}
+                  alt={item.name}
+                  className="w-full h-52 object-cover"
+                />
+              )}
+
+              {/* Details */}
+              <div className="p-5">
+                <h2 className="text-xl font-bold text-amber-900">{item.name}</h2>
+                <p className="text-gray-600 mt-2">{item.description}</p>
+                <p className="text-lg font-semibold text-amber-950 mt-4">
+                  Rs {item.price}
+                </p>
+
+                <button
+                  onClick={() => addToCart(item.id)}
+                  className="mt-5 w-full py-2 bg-amber-900 text-white rounded-full hover:bg-yellow-900 transition"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 col-span-3">
+            No menu items found.
+          </p>
+        )}
       </div>
 
       {/* Display Error */}
-      {error && <p className="text-center text-red-500">{error}</p>}
+      {error && (
+        <div className="text-center mt-8">
+          <p className="text-red-500 font-semibold">{error}</p>
+        </div>
+      )}
     </div>
   );
 };

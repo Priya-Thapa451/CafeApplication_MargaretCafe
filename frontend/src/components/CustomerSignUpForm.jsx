@@ -1,12 +1,23 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function CustomerSignupForm() {
-  // Validation function
+  const navigate = useNavigate();
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+  const [userInput, setUserInput] = useState({
+    email: "",
+    name: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({});
+  const [success, setSuccess] = useState(false); // Track registration success
+
   const Validation = (userInput) => {
     let errors = {};
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
     if (!userInput.email) {
       errors.email = "Email is required";
@@ -29,26 +40,14 @@ export default function CustomerSignupForm() {
     return errors;
   };
 
-  // State management
-  const [userInput, setUserInput] = useState({
-    email: "",
-    name: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState({});
-
-  // Handle input change
   const handleChange = (e) => {
     setUserInput({ ...userInput, [e.target.name]: e.target.value });
   };
 
-  // Handle blur to clear error messages
   const handleBlur = (e) => {
     setErrors((prevErrors) => ({ ...prevErrors, [e.target.name]: "" }));
   };
 
-  // Handle form submission
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -56,6 +55,7 @@ export default function CustomerSignupForm() {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) {
+      toast.error("Please fill out all fields correctly.");
       return;
     }
 
@@ -65,10 +65,10 @@ export default function CustomerSignupForm() {
         userInput
       );
       console.log("Response:", response);
-      toast.success("Registration successful");
+      toast.success("Registration successful! Please click Login to continue.");
+      setSuccess(true); // Set success to true to enable login click
     } catch (error) {
       console.error("Error response:", error.response);
-
       if (
         error.response &&
         error.response.data.message === "Email is already in use."
@@ -82,79 +82,86 @@ export default function CustomerSignupForm() {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div className="w-full max-w-md border-2 border-black p-6 bg-white rounded-lg">
-        <div className="font-semibold text-3xl mb-6 text-center">
-          Customer Register
-        </div>
-
-        <form className="flex flex-col gap-4" onSubmit={handleSignup}>
-          {/* Email */}
-          <div>
-            <label className="block mb-1 font-medium">Email Address</label>
-            <div className="flex items-center border border-gray-300 rounded-md p-2 focus-within:ring-2 focus-within:ring-blue-500">
-              <input
-                type="email"
-                name="email"
-                className="ml-2 w-full outline-none"
-                placeholder="Email"
-                value={userInput.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Username */}
-          <div>
-            <label className="block mb-1 font-medium">Username</label>
-            <div className="flex items-center border border-gray-300 rounded-md p-2 focus-within:ring-2 focus-within:ring-blue-500">
-              <input
-                type="text"
-                name="name"
-                className="ml-2 w-full outline-none"
-                placeholder="Username"
-                value={userInput.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name}</p>
-            )}
-          </div>
-
-          {/* Password */}
-          <div>
-            <label className="block mb-1 font-medium">Password</label>
-            <div className="flex items-center border border-gray-300 rounded-md p-2 focus-within:ring-2 focus-within:ring-blue-500">
-              <input
-                type="password"
-                name="password"
-                className="ml-2 w-full outline-none"
-                placeholder="Password"
-                value={userInput.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </div>
-            {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
-            )}
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full mt-4 py-2 bg-[#B47137] text-white font-medium rounded-md hover:bg-[#A5612F]"
-          >
-            Sign Up
-          </button>
-        </form>
+    <form className="space-y-6" onSubmit={handleSignup}>
+      {/* Email */}
+      <div>
+        <label className="block text-gray-700 text-sm font-semibold mb-2">
+          Email Address
+        </label>
+        <input
+          type="text" // using text instead of email to disable browser validation
+          name="email"
+          value={userInput.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Enter your Gmail address"
+          className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E4523] transition-all duration-300"
+        />
+        {errors.email && (
+          <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+        )}
       </div>
-    </div>
+
+      {/* Username */}
+      <div>
+        <label className="block text-gray-700 text-sm font-semibold mb-2">
+          Username
+        </label>
+        <input
+          type="text"
+          name="name"
+          value={userInput.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Enter your username"
+          className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E4523] transition-all duration-300"
+        />
+        {errors.name && (
+          <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+        )}
+      </div>
+
+      {/* Password */}
+      <div>
+        <label className="block text-gray-700 text-sm font-semibold mb-2">
+          Password
+        </label>
+        <input
+          type="password"
+          name="password"
+          value={userInput.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder="Create a strong password"
+          className="w-full px-4 py-3 rounded-xl border-2 border-gray-300 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6E4523] transition-all duration-300"
+        />
+        {errors.password && (
+          <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+        )}
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full py-3 px-4 bg-[#6E4523] text-white font-semibold rounded-xl hover:bg-[#5a371c] transition-all duration-300 shadow-lg hover:shadow-2xl"
+      >
+        Sign Up
+      </button>
+
+      {/* Link to Login */}
+      <div className="text-center text-sm text-gray-600 mt-4">
+        Already have an account?{" "}
+        <span
+          className={`${
+            success
+              ? "text-[#6E4523] font-semibold cursor-pointer hover:underline"
+              : "text-gray-400 cursor-not-allowed"
+          }`}
+          onClick={() => success && navigate("/login")}
+        >
+          Login
+        </span>
+      </div>
+    </form>
   );
 }

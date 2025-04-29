@@ -29,7 +29,7 @@ const Dashboard = () => {
           }
         );
 
-        setStats(res.data); // Assuming response format is correct
+        setStats(res.data);
         setRecentOrders(res.data.recentOrders);
         setLoading(false);
       } catch (error) {
@@ -41,33 +41,40 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
-  if (loading) return <p className="text-center p-4">Loading...</p>;
+  if (loading) return <p className="text-center p-6 text-brown-600 font-medium">Loading your dashboard...</p>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="p-8 bg-[#FFF8F0] min-h-screen">
+      <h1 className="text-3xl font-bold text-[#5C4033] mb-8 text-center">Admin Dashboard</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <StatCard
           title="Total Users"
           value={stats.totalUsers}
-          color="bg-blue-500"
+          color="bg-[#A9746E]" // soft coffee brown
         />
         <StatCard
           title="Total Orders"
           value={stats.totalOrders}
-          color="bg-green-500"
+          color="bg-[#6B8E23]" // muted green
         />
         <StatCard
           title="Total Menu"
           value={stats.totalProducts}
-          color="bg-purple-500"
+          color="bg-[#D4A373]" // soft light brown
         />
-       
       </div>
 
-      <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <RecentOrder orders={recentOrders} />
-        <OrderChart data={stats.orderGraph} />
+      <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-xl font-semibold text-[#5C4033] mb-4">Recent Orders</h2>
+          <RecentOrder orders={recentOrders} />
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-lg p-6">
+          <h2 className="text-xl font-semibold text-[#5C4033] mb-4">Order Trend</h2>
+          <OrderChart data={stats.orderGraph} />
+        </div>
       </div>
     </div>
   );

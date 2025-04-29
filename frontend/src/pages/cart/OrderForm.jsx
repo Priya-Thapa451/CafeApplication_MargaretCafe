@@ -79,6 +79,7 @@ const OrderForm = ({ cartItems }) => {
             onChange={(e) => setOrderType(e.target.value)}
             className="w-full p-3 rounded-md border border-[#c7a17a] bg-[#fcf6ef] focus:outline-none focus:ring-2 focus:ring-[#b08b61]"
           >
+            <option value="DINE IN">Pickup</option>
             <option value="DELIVERY">Delivery</option>
             <option value="PICKUP">Pickup</option>
           </select>

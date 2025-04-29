@@ -18,7 +18,7 @@ export default function VerifyEmail() {
         console.log("Token being sent:", token);
         if (response.status === 200) {
           // Success message
-          setVerificationStatus("Your email has been verified successfully!");
+          setVerificationStatus("User is now verified!");
           setTimeout(() => {
             navigate("/login"); // Redirect to login page after successful verification
           }, 3000); // Delay before redirecting
