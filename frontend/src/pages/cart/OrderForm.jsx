@@ -62,7 +62,7 @@ const OrderForm = ({ cartItems }) => {
 
       <div className="space-y-6 text-sm">
         <div>
-          <label className="block mb-2 font-semibold">📍 Address</label>
+          <label className="block mb-2 font-semibold"> Address</label>
           <input
             type="text"
             value={address}
@@ -73,7 +73,7 @@ const OrderForm = ({ cartItems }) => {
         </div>
 
         <div>
-          <label className="block mb-2 font-semibold">📦 Order Type</label>
+          <label className="block mb-2 font-semibold"> Order Type</label>
           <select
             value={orderType}
             onChange={(e) => setOrderType(e.target.value)}
@@ -86,7 +86,7 @@ const OrderForm = ({ cartItems }) => {
         </div>
 
         <div>
-          <label className="block mb-2 font-semibold">💳 Payment Method</label>
+          <label className="block mb-2 font-semibold"> Payment Method</label>
           <select
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}

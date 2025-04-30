@@ -89,7 +89,7 @@ export default function CustomerNavbar() {
                 </li>
                 <li>
                   <Link
-                    to="/customer/orders"
+                    to="/customers/orders"
                     className="block px-4 py-2 hover:bg-[#a7744f]"
                   >
                     My Orders

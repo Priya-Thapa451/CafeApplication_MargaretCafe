@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
-import MenuImage from "../../assets/Menu.png"; // Ensure you have a menu image
-import MenuCard from "../../components/MenuCard"; // You might be using it later?
+import MenuImage from "../../assets/Menu.png";
 
 const Menu = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     fetchMenuItems();
@@ -51,13 +52,28 @@ const Menu = () => {
     }
   };
 
+  // Filter items based on search term
   const filteredItems = menuItems.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const goToPrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Menu Banner */}
+      {/* Banner */}
       <div
         className="relative w-full h-72 bg-cover bg-center rounded-xl overflow-hidden mb-12"
         style={{ backgroundImage: `url(${MenuImage})` }}
@@ -83,14 +99,12 @@ const Menu = () => {
             type="text"
             placeholder="Search menu items..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-10 py-3 border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-amber-900 focus:border-amber-900 transition"
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setCurrentPage(1); // Reset to first page on search
+            }}
+            className="w-full pl-12 pr-10 py-3 border border-gray-300 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-amber-900 transition"
           />
-          {/* Search Icon */}
-          <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-            
-          </div>
-          {/* Clear Button */}
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
@@ -104,13 +118,12 @@ const Menu = () => {
 
       {/* Menu Items */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item) => (
+        {currentItems.length > 0 ? (
+          currentItems.map((item) => (
             <div
               key={item.id}
               className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform hover:scale-105"
             >
-              {/* Image */}
               {item.imageUrl && (
                 <img
                   src={`http://localhost:5000${item.imageUrl}`}
@@ -118,15 +131,12 @@ const Menu = () => {
                   className="w-full h-52 object-cover"
                 />
               )}
-
-              {/* Details */}
               <div className="p-5">
                 <h2 className="text-xl font-bold text-amber-900">{item.name}</h2>
                 <p className="text-gray-600 mt-2">{item.description}</p>
                 <p className="text-lg font-semibold text-amber-950 mt-4">
                   Rs {item.price}
                 </p>
-
                 <button
                   onClick={() => addToCart(item.id)}
                   className="mt-5 w-full py-2 bg-amber-900 text-white rounded-full hover:bg-yellow-900 transition"
@@ -142,6 +152,37 @@ const Menu = () => {
           </p>
         )}
       </div>
+
+      {/* Pagination Controls */}
+      {filteredItems.length > itemsPerPage && (
+        <div className="flex justify-center mt-10 gap-4">
+          <button
+            onClick={goToPrevPage}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded-full ${
+              currentPage === 1
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-amber-900 text-white hover:bg-yellow-900"
+            }`}
+          >
+            Previous
+          </button>
+          <span className="self-center text-amber-950 font-semibold">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded-full ${
+              currentPage === totalPages
+                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                : "bg-amber-900 text-white hover:bg-yellow-900"
+            }`}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {/* Display Error */}
       {error && (

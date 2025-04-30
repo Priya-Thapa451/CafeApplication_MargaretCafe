@@ -40,7 +40,7 @@ const isAvailableTimeSlot = async (reservationDate, requestedTime) => {
   return !existingReservation;
 };
 
-// ✅ Create Reservation (requires authentication)
+//  Create Reservation (requires authentication)
 const createReservation = async (req, res) => {
   try {
     const { name, email, phone, date, service, timeSlot } = req.body;
